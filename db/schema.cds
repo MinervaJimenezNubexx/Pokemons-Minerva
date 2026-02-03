@@ -5,9 +5,15 @@ using {cuid} from '@sap/cds/common';
 // Voy a usar el mismo tipo en común para todos los nombres de las entidades
 type Name : String(60);
 
+@assert.unique: {
+    Email: [Email]
+}
 
 entity Trainers : cuid {
-    Name      : Name not null;
+    firstName : Name not null; 
+    lastName  : Name not null;
+    Name      : String(120) @readonly = (firstName || '' || lastName);
+    // assert.format? [a-z][@][a-z][.][a-z] como los formatos que usabamos en autómatas?
     Email     : String(120) not null;
     BirthDate : Date not null;
 
