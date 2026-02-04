@@ -1,4 +1,4 @@
-namespace pokemons_db;
+namespace pokemons.db; //el namespace se pone con . no _, el archivo de los datos de mock se debe llamar con este formato: pokemons.db-Captures.csv
 
 using {cuid} from '@sap/cds/common';
 
@@ -12,16 +12,16 @@ type Name : String(60);
 entity Trainers : cuid {
     firstName : Name not null; 
     lastName  : Name not null;
-    Name      : String(120) @readonly = (firstName || '' || lastName);
-    // assert.format? [a-z][@][a-z][.][a-z] como los formatos que usabamos en autómatas?
-    Email     : String(120) not null;
-    BirthDate : Date not null;
+     // si no le pongo nada no se guarda el dato en bbdd, si pongo stored se guardaría
+    // assert.format? [a-z]*[a-z]@[a-z]*[a-z].[a-z]*[a-z] como los formatos que usabamos en autómatas?
+    Email     : String(121) not null;
+    BirthDate : Date not null; // formato año-mes-día
 
     // ENUNCIADO: Los Teams dependen del Trainer, de modo que si un entrenador se elimina, todos sus equipos también deben eliminarse ->
     // Como el Team depende del Trainer, para que el Team se borre si se borra el trainer se debe usar una relación fuerte
     // que en este caso es Composition, si fuera Association no se borrarían los teams sin trainers
     Teams     : Composition of many Teams
-                    on Teams.TeamTrainer = ID;
+                    on Teams.TeamTrainer = $self; // el formato de las UUID es largo con muchos digitos, mejor buscar un generador de UUID para no hacerlo a mano
 
 }
 
@@ -37,7 +37,7 @@ entity Teams : cuid {
     // ENUNCIADO: Las Captures dependen del Team, por lo que si un equipo se elimina, sus capturas también deben eliminarse ->
     // Aquí pasa lo mismo que en el caso anterior, por lo que se usa Composition de nuevo
     Captures    : Composition of many Captures
-                      on Captures.Team = ID;
+                      on Captures.Team = $self; // si pongo ID me da error en el cds watch
 }
 
 entity Captures : cuid {

@@ -1,6 +1,0 @@
-ID, Name, Description, Active, TeamTrainer_ID
-T_Elec, Electric, Pokemons de tipo electricidad, false, Trainer-1
-T_Fire, Fire, Pokemons de tipo fuego, true, Trainer-1
-T_Water, Water, Pokemons de tipo agua, false, Trainer-2
-T_Plant, Plant, Pokemons de tipo planta, true, Trainer-2
-T_Norm, Normal, Pokemons de tipo normal, true, Trainer-3

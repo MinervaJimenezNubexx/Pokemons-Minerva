@@ -1,0 +1,97 @@
+@server=http://localhost:4004
+
+//READ
+###
+# @name GET Trainers
+
+GET {{server}}/odata/v4/cap/Trainers
+
+//CREATE ON CASCADE new trainer with his respectives new teams and new captures on the new teams
+###
+# @name POST Trainers
+POST {{server}}/odata/v4/cap/Trainers
+Content-Type: application/json
+
+{
+    "firstName": "Maya", 
+    "lastName": "Stars",
+    "Email": "mayastars@pokemon.es",
+    "BirthDate": "1989-12-12",
+    "Teams": [
+        {
+            "Name": "Siniestro",
+            "Description": "Pokemons de tipo siniestro",
+            "Active": true,
+            "Captures": [
+                {
+                    "PokemonName": "Haunter",
+                    "Weight": 15,
+                    "Height": 120
+                },
+                {
+                    "PokemonName": "Gengar",
+                    "Weight": 80,
+                    "Height": 250
+                }
+            ]
+        },
+        {
+            "Name": "Hada",
+            "Description": "Pokemons de tipo hada",
+            "Active": true,
+            "Captures": [
+                {
+                    "PokemonName": "Sylveon",
+                    "Weight": 4,
+                    "Height": 35
+                },
+                {
+                    "PokemonName": "Gardevoir",
+                    "Weight": 12,
+                    "Height": 160
+                }
+            ]
+        }
+    ]
+
+}
+
+// UPDATE TRAINER
+###
+# @name PATCH Trainers
+//route + ID of the object to update
+PATCH {{server}}/odata/v4/cap/Trainers(00000000-0000-0000-0000-000000000001)
+Content-Type: application/json
+
+{
+    "Email": "ashketchum@pokemon.es"
+}
+
+// UPDATE TEAM
+###
+# @name PATCH Teams
+//route + ID of the object to update
+PATCH {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000001)
+Content-Type: application/json
+
+{
+    "Description": "Electric type pokemons"
+}
+
+// UPDATE CAPTURE
+###
+# @name PATCH Captures
+//route + ID of the object to update
+PATCH {{server}}/odata/v4/cap/Captures(00000000-0000-0000-0000-000000000001)
+Content-Type: application/json
+
+{
+    "PokemonName": "Raichu",
+    "Weight": 8,
+    "Height": 65
+}
+
+//DELETE ON CASCADE the new trainer, teams and captures created with the CREATE on cascade before
+###
+# @name DELETE Trainers
+DELETE {{server}}/odata/v4/cap/Trainers(f6ca8339-add4-4f5f-a5db-e8e256e381b0)
