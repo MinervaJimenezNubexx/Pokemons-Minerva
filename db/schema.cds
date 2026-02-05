@@ -33,7 +33,7 @@ entity Trainers : cuid {
 entity Medals : cuid {
     Name  : Name not null;
     Owners : Composition of many medalsOwned on Owners.medalOwned = $self;
-    Gyms : Composition of many Gyms on Gyms.GymMedals = $self;
+    Gyms : Composition of Gyms on Gyms.GymMedals = $self;
     canBeObtained: Boolean default true;
 }
 
@@ -47,12 +47,12 @@ entity Gyms : cuid {
 }
 
 // table on the middle to create the n:n relation
-@assert.unique: {medalOwned: [trainerOwns, medalOwned]}
-@assert.unique: {obtainedAgainst: [obtainedAgainst]}
 
-entity medalsOwned : cuid {
-    trainerOwns: Association to Trainers not null;
-    medalOwned: Association to Medals not null;
+//@assert.unique: {obtainedAgainst: [obtainedAgainst]}
+
+entity medalsOwned {
+    key trainerOwns: Association to Trainers not null;
+    key medalOwned: Association to Medals not null;
     obtainedOn: Date not null; // date on which the medal was obtained
     obtainedAgainst: Name not null; // leader of the gym defeated to obtain the medal
 }
