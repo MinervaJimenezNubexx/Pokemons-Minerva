@@ -20,4 +20,9 @@ service CapService {
             trainerOwns.firstName,
             medalOwned.Name
         }
+
+    entity Gyms as projection on db.Gyms{
+        *,
+        GymMedals.Name as MedalName
+    }
 };

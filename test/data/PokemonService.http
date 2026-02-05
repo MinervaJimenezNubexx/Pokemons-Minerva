@@ -6,7 +6,7 @@
 
 GET {{server}}/odata/v4/cap/Trainers
 
-//CREATE ON CASCADE new trainer with his respectives new teams and new captures on the new teams
+//CREATE ON CASCADE new trainer with their respectives new teams and new captures on their new teams
 ###
 # @name POST Trainers
 POST {{server}}/odata/v4/cap/Trainers

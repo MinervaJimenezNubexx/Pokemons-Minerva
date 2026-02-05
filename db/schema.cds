@@ -5,6 +5,12 @@ using {cuid} from '@sap/cds/common';
 // Voy a usar el mismo tipo en común para todos los nombres de las entidades
 type Name : String(60);
 
+type GeoLocation : {
+    latitude  : Decimal(9,6);
+    longitude : Decimal(9,6);
+    region : Name not null
+};
+
 @assert.unique: {Email: [Email]}
 
 entity Trainers : cuid {
@@ -27,14 +33,28 @@ entity Trainers : cuid {
 entity Medals : cuid {
     Name  : Name not null;
     Owners : Composition of many medalsOwned on Owners.medalOwned = $self;
+    Gyms : Composition of many Gyms on Gyms.GymMedals = $self;
+    canBeObtained: Boolean default true;
+}
+
+@assert.unique: {GymName: [GymName]}
+@assert.unique: {Location: [Location]}
+entity Gyms : cuid {
+    GymName : Name not null;
+    GymMedals : Association to Medals;
+    GymLeader : Name not null;
+    Location : GeoLocation not null;
 }
 
 // table on the middle to create the n:n relation
 @assert.unique: {medalOwned: [trainerOwns, medalOwned]}
+@assert.unique: {obtainedAgainst: [obtainedAgainst]}
 
 entity medalsOwned : cuid {
-    trainerOwns: Association to Trainers;
-    medalOwned: Association to Medals;
+    trainerOwns: Association to Trainers not null;
+    medalOwned: Association to Medals not null;
+    obtainedOn: Date not null; // date on which the medal was obtained
+    obtainedAgainst: Name not null; // leader of the gym defeated to obtain the medal
 }
 
 
@@ -61,5 +81,9 @@ entity Captures : cuid {
     // Lo mismo, se requiere una asociación de tipo to-many
     Team        : Association to Teams;
 }
-
 // Como Teams depende de Trainers y Captures depende de Teams, se crea un borrado en cascada de los datos en caso de borrar un trainer
+
+
+// gimnasios, cada gimnasio tiene una medalla, localización de gimnasios, añadir datos mock a todas las entidades, añadir atributos a medallas, gimnasios y localizaciones
+// la localización de los gimnasios tiene que tener longitud y latitud
+
