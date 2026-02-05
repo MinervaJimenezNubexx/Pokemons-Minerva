@@ -3,12 +3,12 @@ namespace pokemons.db; //el namespace se pone con . no _, el archivo de los dato
 using {cuid} from '@sap/cds/common';
 
 // Voy a usar el mismo tipo en común para todos los nombres de las entidades
-type Name : String(60);
+type Name        : String(60);
 
 type GeoLocation : {
-    latitude  : Decimal(9,6);
-    longitude : Decimal(9,6);
-    region : Name not null
+    latitude  : Decimal(9, 6);
+    longitude : Decimal(9, 6);
+    region    : Name not null
 };
 
 @assert.unique: {Email: [Email]}
@@ -27,34 +27,37 @@ entity Trainers : cuid {
     Teams       : Composition of many Teams
                       on Teams.TeamTrainer = $self; // el formato de las UUID es largo con muchos digitos, mejor buscar un generador de UUID para no hacerlo a mano
 
-    MedalsOwned : Composition of many medalsOwned on MedalsOwned.trainerOwns = $self;
+    MedalsOwned : Composition of many trainerMedals
+                      on MedalsOwned.trainerOwns = $self;
 }
 
 entity Medals : cuid {
-    Name  : Name not null;
-    Owners : Composition of many medalsOwned on Owners.medalOwned = $self;
-    Gyms : Composition of Gyms on Gyms.GymMedals = $self;
-    canBeObtained: Boolean default true;
+    Name          : Name not null;
+    Owners        : Composition of many trainerMedals
+                        on Owners.medalOwned = $self;
+    Gyms          : Composition of Gyms
+                        on Gyms.GymMedals = $self;
+    canBeObtained : Boolean default true;
 }
 
 @assert.unique: {GymName: [GymName]}
 @assert.unique: {Location: [Location]}
 entity Gyms : cuid {
-    GymName : Name not null;
+    GymName   : Name not null;
     GymMedals : Association to Medals;
     GymLeader : Name not null;
-    Location : GeoLocation not null;
+    Location  : GeoLocation not null;
 }
 
 // table on the middle to create the n:n relation
 
 //@assert.unique: {obtainedAgainst: [obtainedAgainst]}
 
-entity medalsOwned {
-    key trainerOwns: Association to Trainers not null;
-    key medalOwned: Association to Medals not null;
-    obtainedOn: Date not null; // date on which the medal was obtained
-    obtainedAgainst: Name not null; // leader of the gym defeated to obtain the medal
+entity trainerMedals {
+    key trainerOwns     : Association to Trainers not null;
+    key medalOwned      : Association to Medals not null;
+        obtainedOn      : Date not null; // date on which the medal was obtained
+        obtainedAgainst : Name not null; // leader of the gym defeated to obtain the medal
 }
 
 
@@ -86,4 +89,3 @@ entity Captures : cuid {
 
 // gimnasios, cada gimnasio tiene una medalla, localización de gimnasios, añadir datos mock a todas las entidades, añadir atributos a medallas, gimnasios y localizaciones
 // la localización de los gimnasios tiene que tener longitud y latitud
-

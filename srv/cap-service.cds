@@ -15,7 +15,7 @@ service CapService {
     entity Medals     as projection on db.Medals;
 
     entity medalOwned as
-        projection on db.medalsOwned {
+        projection on db.trainerMedals {
             *,
             trainerOwns.firstName,
             medalOwned.Name
