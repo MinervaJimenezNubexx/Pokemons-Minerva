@@ -5,25 +5,38 @@ using {cuid} from '@sap/cds/common';
 // Voy a usar el mismo tipo en común para todos los nombres de las entidades
 type Name : String(60);
 
-@assert.unique: {
-    Email: [Email]
-}
+@assert.unique: {Email: [Email]}
 
 entity Trainers : cuid {
-    firstName : Name not null; 
-    lastName  : Name not null;
-     // si no le pongo nada no se guarda el dato en bbdd, si pongo stored se guardaría
+    firstName   : Name not null;
+    lastName    : Name not null;
+    // si no le pongo nada no se guarda el dato en bbdd, si pongo stored se guardaría
     // assert.format? [a-z]*[a-z]@[a-z]*[a-z].[a-z]*[a-z] como los formatos que usabamos en autómatas?
-    Email     : String(121) not null;
-    BirthDate : Date not null; // formato año-mes-día
+    Email       : String(121) not null;
+    BirthDate   : Date not null; // formato año-mes-día
 
     // ENUNCIADO: Los Teams dependen del Trainer, de modo que si un entrenador se elimina, todos sus equipos también deben eliminarse ->
     // Como el Team depende del Trainer, para que el Team se borre si se borra el trainer se debe usar una relación fuerte
     // que en este caso es Composition, si fuera Association no se borrarían los teams sin trainers
-    Teams     : Composition of many Teams
-                    on Teams.TeamTrainer = $self; // el formato de las UUID es largo con muchos digitos, mejor buscar un generador de UUID para no hacerlo a mano
+    Teams       : Composition of many Teams
+                      on Teams.TeamTrainer = $self; // el formato de las UUID es largo con muchos digitos, mejor buscar un generador de UUID para no hacerlo a mano
 
+    MedalsOwned : Composition of many medalsOwned on MedalsOwned.trainerOwns = $self;
 }
+
+entity Medals : cuid {
+    Name  : Name not null;
+    Owners : Composition of many medalsOwned on Owners.medalOwned = $self;
+}
+
+// table on the middle to create the n:n relation
+@assert.unique: {medalOwned: [trainerOwns, medalOwned]}
+
+entity medalsOwned : cuid {
+    trainerOwns: Association to Trainers;
+    medalOwned: Association to Medals;
+}
+
 
 entity Teams : cuid {
     Name        : Name not null;
