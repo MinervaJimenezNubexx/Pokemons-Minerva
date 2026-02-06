@@ -6,6 +6,14 @@
 
 GET {{server}}/odata/v4/cap/Trainers
 
+###
+# @name GET PokemonSizeView
+GET {{server}}/odata/v4/cap/PokemonSizeView
+
+###
+# @name GET TrainerGymMedalsView
+GET {{server}}/odata/v4/cap/TrainerGymMedalsView
+
 //CREATE ON CASCADE new trainer with their respectives new teams and new captures on their new teams
 ###
 # @name POST Trainers

@@ -1,8 +1,7 @@
-namespace pokemons.db; //el namespace se pone con . no _, el archivo de los datos de mock se debe llamar con este formato: pokemons.db-Captures.csv
+namespace pokemons.db; //namespaces are named using . instead of _, the mock data file must be named using this format: pokemons.db-Captures.csv
 
 using {cuid} from '@sap/cds/common';
 
-// Voy a usar el mismo tipo en común para todos los nombres de las entidades
 type Name        : String(60);
 
 type GeoLocation : {
@@ -17,7 +16,6 @@ entity Trainers : cuid {
     firstName   : Name not null;
     lastName    : Name not null;
     // si no le pongo nada no se guarda el dato en bbdd, si pongo stored se guardaría
-    // assert.format? [a-z]*[a-z]@[a-z]*[a-z].[a-z]*[a-z] como los formatos que usabamos en autómatas?
     Email       : String(121) not null;
     BirthDate   : Date not null; // formato año-mes-día
 
@@ -84,8 +82,9 @@ entity Captures : cuid {
     // Lo mismo, se requiere una asociación de tipo to-many
     Team        : Association to Teams;
 }
-// Como Teams depende de Trainers y Captures depende de Teams, se crea un borrado en cascada de los datos en caso de borrar un trainer
+// Since Captures depends on Teams, and Teams on Trainers, it creates Delete on Cascade
+
+// The views can be done here in the schema.cds or in the srevice.cds
 
 
-// gimnasios, cada gimnasio tiene una medalla, localización de gimnasios, añadir datos mock a todas las entidades, añadir atributos a medallas, gimnasios y localizaciones
-// la localización de los gimnasios tiene que tener longitud y latitud
+
