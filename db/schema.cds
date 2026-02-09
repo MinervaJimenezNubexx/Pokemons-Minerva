@@ -15,7 +15,8 @@ type GeoLocation : {
 entity Trainers : cuid {
     firstName   : Name not null;
     lastName    : Name not null;
-    // si no le pongo nada no se guarda el dato en bbdd, si pongo stored se guardaría
+    name : String = (firstName || ' ' || lastName);
+    // si no le pongo nada no se guarda el dato en bbdd, si pongo stored al final se guardaría: name : String = (firstName || ' ' || lastName) stored;
     Email       : String(121) not null;
     BirthDate   : Date not null; // formato año-mes-día
 
@@ -84,7 +85,7 @@ entity Captures : cuid {
 }
 // Since Captures depends on Teams, and Teams on Trainers, it creates Delete on Cascade
 
-// The views can be done here in the schema.cds or in the srevice.cds
+// The views can be done here in the schema.cds or in the service.cds
 
 
 
