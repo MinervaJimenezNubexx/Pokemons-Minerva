@@ -27,7 +27,7 @@ Content-Type: application/json
 {
     "firstName": "Maya", 
     "lastName": "Stars",
-    "Email": "mayastars@pokemon.es",
+    "Email": "mayastars@nubexx.es",
     "BirthDate": "1989-12-12",
     "Teams": [
         {
@@ -111,3 +111,4 @@ DELETE {{server}}/odata/v4/cap/Trainers(2c55a539-e98b-4db4-a59f-f3f554e013a7)
 ###
 # @name DELETE Teams
 DELETE {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)
+
