@@ -7,6 +7,10 @@
 GET {{server}}/odata/v4/cap/Trainers
 
 ###
+# @name GET Teams
+GET {{server}}/odata/v4/cap/Teams
+
+###
 # @name GET PokemonSizeView
 GET {{server}}/odata/v4/cap/PokemonSizeView
 
@@ -102,4 +106,8 @@ Content-Type: application/json
 //DELETE ON CASCADE the new trainer, teams and captures created with the CREATE on cascade before
 ###
 # @name DELETE Trainers
-DELETE {{server}}/odata/v4/cap/Trainers(f6ca8339-add4-4f5f-a5db-e8e256e381b0)
+DELETE {{server}}/odata/v4/cap/Trainers(2c55a539-e98b-4db4-a59f-f3f554e013a7)
+
+###
+# @name DELETE Teams
+DELETE {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)
