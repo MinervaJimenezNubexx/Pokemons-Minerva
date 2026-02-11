@@ -11,6 +11,10 @@ GET {{server}}/odata/v4/cap/Trainers
 GET {{server}}/odata/v4/cap/Teams
 
 ###
+# @name GET Captures
+GET {{server}}/odata/v4/cap/Captures
+
+###
 # @name GET PokemonSizeView
 GET {{server}}/odata/v4/cap/PokemonSizeView
 
@@ -68,6 +72,40 @@ Content-Type: application/json
 
 }
 
+###
+# @name POST Teams with same capture
+POST {{server}}/odata/v4/cap/Teams
+Content-Type: application/json
+
+{
+    "Name": "Siniestro2",
+    "Description": "Pokemons de tipo siniestro2",
+    "Active": true,
+    "Captures": [
+        {
+            "PokemonName": "Haunter",
+            "Weight": 15,
+            "Height": 120
+        },
+        {
+            "PokemonName": "Haunter",
+            "Weight": 80,
+            "Height": 250
+        }
+    ]
+}
+
+###
+# @name POST Teams with no captures
+POST {{server}}/odata/v4/cap/Teams
+Content-Type: application/json
+
+{
+    "Name": "Indefinido",
+    "Description": "Pokemons indefinidos",
+    "Captures": null
+}
+
 // UPDATE TRAINER
 ###
 # @name PATCH Trainers
@@ -112,3 +150,10 @@ DELETE {{server}}/odata/v4/cap/Trainers(2c55a539-e98b-4db4-a59f-f3f554e013a7)
 # @name DELETE Teams
 DELETE {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)
 
+###
+# @name DELETE Captures
+DELETE {{server}}/odata/v4/cap/Captures(00000000-0000-0000-0000-000000000009)
+
+###
+# @name DELETE Captures
+DELETE {{server}}/odata/v4/cap/Captures(00000000-0000-0000-0000-000000000010)

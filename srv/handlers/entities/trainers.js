@@ -1,3 +1,8 @@
+function validateTrainer(req){
+    trainerEmailFormat(req);
+    validTrainerAge(req);
+}
+
 function trainerEmailFormat(req) {
 
     const email = req.data.Email
@@ -17,60 +22,55 @@ function trainerEmailFormat(req) {
 
 }
 
-module.exports = {trainerEmailFormat}
-/*
-module.exports = cds.service.impl(function ValidTrainerAge(params) {
-    const { Trainers } = this.entities
 
-    this.before(['CREATE', 'UPDATE'], Trainers, (req) => {
-        const birthDate = req.data.BirthDate
+function validTrainerAge(req) {
+    const birthDate = req.data.BirthDate
 
-        if (!birthDate) return // if there is no birthdate, do nothing
+    if (!birthDate) return // if there is no birthdate, do nothing
 
-        const today = new Date()
-        const birth = new Date(birthDate) // copy of the birthdate to have it as a Date type, birthDate is not considered a Date type
-        // so the method .getFullYear won't work on it when the code is executed
+    const today = new Date()
+    const birth = new Date(birthDate) // copy of the birthdate to have it as a Date type, birthDate is not considered a Date type
+    // so the method .getFullYear won't work on it when the code is executed
 
-        let age = today.getFullYear() - birth.getFullYear()
+    let age = today.getFullYear() - birth.getFullYear()
 
-        const hasHadBirthdayThisYear =
-            (today.getMonth() > birth.getMonth()) ||
-            (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate())
+    const hasHadBirthdayThisYear =
+        (today.getMonth() > birth.getMonth()) ||
+        (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate())
 
-        if (!hasHadBirthdayThisYear) { //if they have not had their birthday this year yet, 
-            // their age is one less, not the exact one calculated before
-            age--
+    if (!hasHadBirthdayThisYear) { //if they have not had their birthday this year yet, 
+        // their age is one less, not the exact one calculated before
+        age--
+    }
+
+    if (age < 18 || age > 110) {
+        req.error(400, 'The trainer must be over 18 and under 110 years old.')
+    }
+}
+
+
+function uppercaseTrainerFirstName(data) {
+
+    if (!data) return // if there is no data, do nothing
+
+    let trainers
+
+    // if I read one single record, its an object, but if I read multiple records, its an array of objects
+    // so if its a single object, I put it into an array to work with the same type of data
+    if (Array.isArray(data)) {
+        trainers = data
+    } else {
+        trainers = [data]
+    }
+
+    for (const trainer of trainers) { // foreach in JS
+        if (trainer.firstName) { // if the trainer has firstname
+            trainer.firstName = trainer.firstName.toUpperCase()
         }
+    }
+}
 
-        if (age < 18 || age > 110) {
-            req.error(400, 'The trainer must be over 18 and under 110 years old.')
-        }
-    })
-})
-
-module.exports = cds.service.impl(function UppercaseTrainerFirstName() {
-    const { Trainers } = this.entities
-
-    this.after('READ', Trainers, data => {
-
-        if (!data) return // if there is no data, do nothing
-
-        let trainers
-
-        // if I read one single record, its an object, but if I read multiple records, its an array of objects
-        // so if its a single object, I put it into an array to work with the same type of data
-        if (Array.isArray(data)) {
-            trainers = data
-        } else {
-            trainers = [data]
-        }
-
-        for (const trainer of trainers) { // foreach in JS
-            if (trainer.firstName) { // if the trainer has firstname
-                trainer.firstName = trainer.firstName.toUpperCase()
-            }
-        }
-    })
-})
-*/
-
+module.exports = { 
+    validateTrainer,
+    uppercaseTrainerFirstName
+};

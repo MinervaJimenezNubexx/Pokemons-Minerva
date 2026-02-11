@@ -1,2 +1,9 @@
 const trainers = require ("./trainers")
-module.exports = {trainers}
+const captures = require("./captures")
+const teams = require("./teams")
+
+module.exports = {
+    trainers,
+    captures,
+    teams
+}
