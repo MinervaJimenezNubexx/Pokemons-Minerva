@@ -1,5 +1,10 @@
 const entities = require("./entities")
-module.exports = {entities}
+const actions = require("./actions")
+const functions = require("./functions")
 
-//const functions = require("./functions")
-//module.exports = {functions}
+module.exports = {
+    entities,
+    actions,
+    functions
+}
+

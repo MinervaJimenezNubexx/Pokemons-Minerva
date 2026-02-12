@@ -17,7 +17,7 @@ entity Trainers : cuid {
     lastName    : Name not null;
     name : String = (firstName || ' ' || lastName);
     // si no le pongo nada no se guarda el dato en bbdd, si pongo stored al final se guardaría: name : String = (firstName || ' ' || lastName) stored;
-    Email       : String(121) not null;
+    @mandatory Email       : String(121) not null;
     BirthDate   : Date not null; // formato año-mes-día
 
     // ENUNCIADO: Los Teams dependen del Trainer, de modo que si un entrenador se elimina, todos sus equipos también deben eliminarse ->
