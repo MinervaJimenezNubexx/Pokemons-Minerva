@@ -1,8 +1,8 @@
-async function notDeleteLastCaptureOnActiveTeam(req) {
+/*async function notDeleteLastCaptureOnActiveTeam(req) {
 
     const tx = cds.tx(req) // Capire:  the constructed transaction will use this context as it's tx.context
 
-    const capture = await tx.run(
+    const capture = await tx.run( //cds.db.run
         SELECT.one.from('pokemons.db.Captures')
             .where({ ID: req.data.ID })
     )
@@ -34,6 +34,24 @@ async function notDeleteLastCaptureOnActiveTeam(req) {
     }
     // if the team doesn't exist or is not active it does nothing
 
+}*/
+
+async function notDeleteLastCaptureOnActiveTeam(req) { //new optimized version of the same function
+
+    teamCapture = await cds.db.run(
+        SELECT.one.from('pokemons.db.Captures').columns(c => {
+            c.ID,
+                c.Team(t => {
+                    t.Active,
+                        t.Captures('*')
+                })
+        }).where({ ID : req.data.ID })
+
+    )
+
+    if(teamCapture.Team?.Active && teamCapture.Team?.Captures.length < 2 ){
+        req.error(400, 'Deletion cancelled: An active team cannot be left without pokemons.')
+    }
 }
 
 module.exports = {

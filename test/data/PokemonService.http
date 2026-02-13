@@ -157,3 +157,12 @@ DELETE {{server}}/odata/v4/cap/Captures(00000000-0000-0000-0000-000000000009)
 ###
 # @name DELETE Captures
 DELETE {{server}}/odata/v4/cap/Captures(00000000-0000-0000-0000-000000000010)
+
+###
+# @name ACTION setTeamStatus
+POST  {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)/setTeamStatus
+Content-Type: application/json
+
+{
+    "status": false
+}

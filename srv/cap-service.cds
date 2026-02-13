@@ -9,7 +9,11 @@ service CapService {
             firstName || ' ' || lastName as Name : String
         };
 
-    entity Teams                as projection on db.Teams;
+    entity Teams                as projection on db.Teams
+        actions {
+            action setTeamStatus(status: Boolean) returns String;
+        };
+
 
     entity Captures             as select from db.Captures;
 
@@ -88,5 +92,5 @@ service CapService {
             end as Size : String(10)
         };
 
-        //action changeTeamStatus
+//action changeTeamStatus
 };
