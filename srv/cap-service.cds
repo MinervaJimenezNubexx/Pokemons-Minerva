@@ -11,7 +11,14 @@ service CapService {
 
     entity Teams                as projection on db.Teams
         actions {
-            action setTeamStatus(status: Boolean) returns String;
+            action   setTeamStatus(status: Boolean) returns String;
+            function getRandomCapture()             returns { // retuns a capture, but I can't do it like "retuns db.Captures"
+                ID          : UUID;
+                PokemonName : String;
+                Weight      : Integer;
+                Height      : Integer;
+                Team_ID     : UUID;
+            };
         };
 
 

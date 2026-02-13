@@ -1,7 +1,7 @@
 const cds = require('@sap/cds')
 const handlers = require('./handlers')
 
-module.exports = cds.service.impl(async function (srv) { 
+module.exports = cds.service.impl(async function (srv) {
 
     /*
         ENTITIES
@@ -28,6 +28,13 @@ module.exports = cds.service.impl(async function (srv) {
 
     //Teams
     srv.on("setTeamStatus", handlers.actions.teams.setTeamStatus);
+
+    /*
+        FUNCTIONS
+    */
+
+    //Teams
+    srv.on("getRandomCapture", handlers.functions.teams.getRandomCapture);
 
 })
 

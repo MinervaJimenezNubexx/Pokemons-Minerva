@@ -29,8 +29,7 @@
 
     // if the team exists and is active. I think it can also be coded as (team?.Active), which is from JS, it does the same
     if (team && team.Active) {
-        req.reject(400, 'Deletion cancelled: An active team cannot be left without pokemons.') // req.reject cancels the operations 
-        // and also makes a rollback, which returns the deleted pokemon to the database
+        req.reject(400, 'Deletion cancelled: An active team cannot be left without pokemons.')
     }
     // if the team doesn't exist or is not active it does nothing
 

@@ -166,3 +166,8 @@ Content-Type: application/json
 {
     "status": false
 }
+
+###
+# @name ACTION getRandomCapture
+
+GET {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)/getRandomCapture
