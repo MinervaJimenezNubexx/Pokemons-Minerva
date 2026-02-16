@@ -1,5 +1,3 @@
-const { SELECT } = require("@sap/cds/lib/ql/cds-ql")
-
 async function getRandomCapture(req) {
     const [{ ID: teamId }] = req.params //const teamId = req.params[0].ID
 
