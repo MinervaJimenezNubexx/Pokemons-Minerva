@@ -47,10 +47,10 @@ service CapService {
         left join db.trainerMedals as TM
             on TM.trainerOwns.ID = T.ID
         {
-            T.ID                    as TrainerID,
+            key T.ID                    as TrainerID,
             T.firstName,
             T.lastName,
-            count(TM.medalOwned.ID) as medalCount
+            count(TM.medalOwned.ID) as medalCount: String
         }
         group by
             T.ID,
@@ -71,7 +71,7 @@ service CapService {
 
             T.firstName,
             T.lastName,
-            T.ID   as TrainerID,
+            key T.ID   as TrainerID,
             T.Email,
             T.BirthDate,
 
@@ -89,6 +89,7 @@ service CapService {
 
     entity PokemonSizeView      as
         select from Captures {
+            key ID,
             PokemonName,
             Team,
             Weight,
