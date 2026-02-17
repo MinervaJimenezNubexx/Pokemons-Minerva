@@ -1,5 +1,5 @@
 _schema-version: 3.3.0
-ID: CAP-1-ENTIDADES-POKEMON
+ID: cap-1-entidades-pokemon
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
@@ -11,7 +11,7 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
-  - name: CAP-1-ENTIDADES-POKEMON-srv
+  - name: cap-1-entidades-pokemon-srv
     type: nodejs
     path: gen/srv
     parameters:
@@ -24,19 +24,45 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: CAP-1-ENTIDADES-POKEMON-db
+      - name: cap-1-entidades-pokemon-auth
+      - name: cap-1-entidades-pokemon-db
+      - name: cap-1-entidades-pokemon-connectivity
+      - name: cap-1-entidades-pokemon-destination
 
-  - name: CAP-1-ENTIDADES-POKEMON-db-deployer
+  - name: cap-1-entidades-pokemon-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: CAP-1-ENTIDADES-POKEMON-db
+      - name: cap-1-entidades-pokemon-db
 
 resources:
-  - name: CAP-1-ENTIDADES-POKEMON-db
+  - name: cap-1-entidades-pokemon-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: cap-1-entidades-pokemon-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          credential-types:
+            - "binding-secret"
+            - "x509"
+  - name: cap-1-entidades-pokemon-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: cap-1-entidades-pokemon-connectivity
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite
+  - name: cap-1-entidades-pokemon-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite

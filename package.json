@@ -1,5 +1,5 @@
 {
-  "name": "CAP-1-ENTIDADES-POKEMON",
+  "name": "cap-1-entidades-pokemon",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
@@ -18,9 +18,12 @@
   "private": true,
   "cds": {
     "requires": {
-      "auth": {
-        "kind": "dummy"
-      }
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      },
+      "destinations": true,
+      "connectivity": true
     }
   }
 }
