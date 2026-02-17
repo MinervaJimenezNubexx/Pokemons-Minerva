@@ -15,7 +15,7 @@ type GeoLocation : {
 entity Trainers : cuid {
     firstName   : Name not null;
     lastName    : Name not null;
-    name : String = (firstName || ' ' || lastName);
+    //name : String = (firstName || ' ' || lastName);
     // si no le pongo nada no se guarda el dato en bbdd, si pongo stored al final se guardaría: name : String = (firstName || ' ' || lastName) stored;
     @mandatory Email       : String(121) not null;
     BirthDate   : Date not null; // formato año-mes-día
