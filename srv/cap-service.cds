@@ -1,9 +1,9 @@
 using {pokemons.db as db} from '../db/schema'; //cds watch
 
+//@requires: 'authenticated-user'
 service CapService {
-    @requires: 'authenticated-user'
+
     @cds.redirection.target
-    @odata.draft.enabled: true
 
     @restrict: [
         {grant: 'READ', to: 'Viewer'},
@@ -146,4 +146,12 @@ service CapService {
                 end as Size : String(10)
         };
 
+    function getPokemonByName(name: String) returns LargeString; /*{ // this does the same as the line above, putting it after the return
+            //ID          : UUID;
+            PokemonName : String;
+            Weight      : Integer;
+            Height      : Integer;
+            //Team_ID     : UUID;
+        };
+*/
 };

@@ -171,3 +171,9 @@ Content-Type: application/json
 # @name ACTION getRandomCapture
 
 GET {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)/getRandomCapture
+
+### 
+# @name EXTERNAL getPokemonByName NO DESTINATIONS
+GET {{server}}/odata/v4/cap/getPokemonByName(name='sylveon')
+
+

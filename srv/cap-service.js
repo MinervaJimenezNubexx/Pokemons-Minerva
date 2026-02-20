@@ -36,5 +36,12 @@ module.exports = cds.service.impl(async function (srv) {
     //Teams
     srv.on("getRandomCapture", handlers.functions.teams.getRandomCapture);
 
+    /*
+        EXTERNALS
+    */
+
+    //PokeAPI
+    srv.on("getPokemonByName", handlers.externals.pokeapi.getPokemonByName);
+
 })
 
