@@ -1,0 +1,1 @@
+using CapService as service from '../../srv/cap-service';

@@ -3,22 +3,22 @@ using {pokemons.db as db} from '../db/schema'; //cds watch
 //@requires: 'authenticated-user'
 service CapService {
 
-    @cds.redirection.target
+    /*@cds.redirection.target
 
     @restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity Trainers             as
         select from db.Trainers {
             *,
             firstName || ' ' || lastName as Name : String
         };
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity Teams                as projection on db.Teams
         actions {
             @restrict: [
@@ -40,10 +40,10 @@ service CapService {
         };*/
         };
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity Captures             as select from db.Captures;
 
     @restrict: [
