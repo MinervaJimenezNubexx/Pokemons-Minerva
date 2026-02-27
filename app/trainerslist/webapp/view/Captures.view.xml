@@ -1,0 +1,33 @@
+<mvc:View controllerName="com.nbx.trainerslist.controller.Captures"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="CapturesID" title="{i18n>titleCaptures}">
+        <Table items="{Captures}">
+        <columns>
+            <Column>
+                <Text text="ID" />
+            </Column>
+            <Column>
+                <Text text="Pokemon Name" />
+            </Column>
+            <Column>
+                <Text text="Weight" />
+            </Column>
+            <Column>
+                <Text text="Height" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{ID}" />
+                    <Text text="{PokemonName}" />
+                    <Text text="{Weight}" />
+                    <Text text="{Height}" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+
+    </Page>
+</mvc:View>

@@ -1,7 +1,7 @@
 {
   "_version": "1.82.0",
   "sap.app": {
-    "id": "com.nbx.trainerslist",
+    "id": "com.nbx.intento2",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
-      "version": "1.20.3",
-      "toolsId": "dce7b601-3a34-482e-9a22-5004844fc08f"
+      "version": "1.20.4",
+      "toolsId": "4956448f-095f-411b-8dea-d597725d62e9"
     },
     "dataSources": {
       "mainService": {
@@ -43,13 +43,12 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": false,
+    "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.145.0",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {},
-        "sap.f": {}
+        "sap.ui.core": {}
       }
     },
     "contentDensities": {
@@ -60,7 +59,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.nbx.trainerslist.i18n.i18n"
+          "bundleName": "com.nbx.intento2.i18n.i18n"
         }
       },
       "": {
@@ -71,9 +70,6 @@
           "autoExpandSelect": true,
           "earlyRequests": true
         }
-      },
-      "appView": {
-        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {
@@ -85,62 +81,34 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.f.routing.Router",
-        "controlAggregation": "beginColumnPages",
-        "controlId": "layout",
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
-        "path": "com.nbx.trainerslist.view",
+        "path": "com.nbx.intento2.view",
         "async": true,
-        "viewPath": "com.nbx.trainerslist.view"
+        "viewPath": "com.nbx.intento2.view"
       },
       "routes": [
         {
-          "name": "RouteTrainers",
-          "pattern": "",
+          "name": "RouteMain",
+          "pattern": ":?query:",
           "target": [
-            "TargetTrainers"
-          ]
-        },
-        {
-          "name": "RouteTeams",
-          "pattern": "trainer/{trainerId}",
-          "target": [
-            "TargetTrainers",
-            "TargetTeams"
-          ]
-        },
-        {
-          "name": "RouteCaptures",
-          "pattern": "trainer/{trainerId}/team/{teamId}",
-          "target": [
-            "TargetTrainers",
-            "TargetTeams",
-            "TargetCaptures"
+            "TargetMain"
           ]
         }
       ],
       "targets": {
-        "TargetTrainers": {
-          "viewName": "Main",
-          "viewId": "MainID",
-          "controlAggregation": "beginColumnPages"
-        },
-        "TargetTeams": {
-          "viewName": "Detail",
-          "viewId": "DetailID",
-          "controlAggregation": "midColumnPages"
-        },
-        "TargetCaptures": {
-          "viewName": "Captures",
-          "viewId": "CapturesID",
-          "controlAggregation": "endColumnPages"
+        "TargetMain": {
+          "id": "Main",
+          "name": "Main"
         }
       }
     },
     "rootView": {
-      "viewName": "com.nbx.trainerslist.view.App",
+      "viewName": "com.nbx.intento2.view.App",
       "type": "XML",
       "id": "App",
       "async": true

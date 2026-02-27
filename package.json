@@ -15,7 +15,8 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-trainerslist": "cds watch --open com.nbx.trainerslist/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-trainerslist": "cds watch --open com.nbx.trainerslist/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-intento2": "cds watch --open com.nbx.intento2/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "cds": {

@@ -46,16 +46,16 @@ service CapService {
     ]*/
     entity Captures             as select from db.Captures;
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity Medals               as projection on db.Medals;
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity medalOwned           as
         projection on db.trainerMedals {
             *,
@@ -63,20 +63,20 @@ service CapService {
             medalOwned.Name
         };
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity Gyms                 as
         projection on db.Gyms {
             *,
             GymMedals.Name as MedalName
         };
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity TrainerMedalCount    as
         select from Trainers as T
         left join db.trainerMedals as TM
@@ -92,10 +92,10 @@ service CapService {
             T.firstName,
             T.lastName;
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity TrainerGymMedalsView as
         select from Trainers as T
         inner join TrainerMedalCount as MC
@@ -126,10 +126,10 @@ service CapService {
         order by
             MC.medalCount desc;
 
-    @restrict: [
+    /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
-    ]
+    ]*/
     entity PokemonSizeView      as
         select from Captures {
             key ID,

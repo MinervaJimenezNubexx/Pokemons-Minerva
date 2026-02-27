@@ -1,6 +1,39 @@
-<mvc:View controllerName="com.nbx.trainerslist.controller.Main"
+<mvc:View
+    controllerName="com.nbx.trainerslist.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns="sap.m"
+>
+    <Page
+        id="MainID"
+        title="{i18n>title}"
+    >
+        <Table
+            id="idTrainersTable"
+            items="{/Trainers}"
+            mode="SingleSelectMaster"
+            itemPress=".onPressItem"
+        >
+            <columns>
+                <Column width="5em">
+                    <Text text="Trainer ID" />
+                </Column>
+                <Column width="5em">
+                    <Text text="First Name" />
+                </Column>
+                <Column width="5em">
+                    <Text text="Last Name" />
+                </Column>
+
+            </columns>
+            <items>
+                <ColumnListItem type="Navigation">
+                    <cells>
+                        <Text text="{ID}" />
+                        <Text text="{firstName}" />
+                        <Text text="{lastName}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
     </Page>
 </mvc:View>

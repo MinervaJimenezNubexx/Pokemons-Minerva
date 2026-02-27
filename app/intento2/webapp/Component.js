@@ -1,24 +1,25 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "./model/models"
+    "com/nbx/intento2/model/models"
 ], (UIComponent, models) => {
     "use strict";
- 
-    return UIComponent.extend("com.nbx.trainerlist.Component", {
+
+    return UIComponent.extend("com.nbx.intento2.Component", {
         metadata: {
             manifest: "json",
             interfaces: [
                 "sap.ui.core.IAsyncContentCreation"
             ]
         },
- 
+
         init() {
-            const oAppViewModel = new sap.ui.model.json.JSONModel({
-                layout: "OneColumn"
-            });
-            this.setModel(oAppViewModel, "appView");
+            // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
+
+            // set the device model
             this.setModel(models.createDeviceModel(), "device");
+
+            // enable routing
             this.getRouter().initialize();
         }
     });

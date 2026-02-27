@@ -1,7 +1,14 @@
-<mvc:View controllerName="com.nbx.trainerslist.controller.App"
+<mvc:View
+    controllerName="com.nbx.trainerslist.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
     xmlns="sap.m">
+
     <App id="app">
+
+        <f:FlexibleColumnLayout
+            id="layout"
+            layout="OneColumn" />
     </App>
 </mvc:View>
