@@ -35,5 +35,13 @@
                 </ColumnListItem>
             </items>
         </Table>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer /> <Button 
+                    text="Add Trainer" 
+                    type="Default" 
+                    press=".onAddDocument" />
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>

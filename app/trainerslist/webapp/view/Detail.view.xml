@@ -13,14 +13,13 @@
                 <ObjectAttribute text="Email: {Email}" />
                 <ObjectAttribute text="Birth Date: {BirthDate}" />
                 <ObjectAttribute text="Medals: {MedalsOwned}" />
-                <ObjectAttribute text="{i18n>EmployeeCountry} {Country}" />
 
         </ObjectHeader>
 
         <IconTabBar >
             <items>
                 <IconTabFilter text="Teams of this trainer">
-                    <core:Fragment fragmentName="com.nbx.trainerlist.view.fragment.teamsTable" type="XML"/>
+                    <core:Fragment fragmentName="com.nbx.trainerslist.view.fragment.teamsTable" type="XML"/>
                 </IconTabFilter>
             </items>
         </IconTabBar>

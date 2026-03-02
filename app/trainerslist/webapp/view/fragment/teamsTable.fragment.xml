@@ -10,11 +10,11 @@
                 <Text text="Description" />
             </Column>
             <Column>
-                <Text text="Status" />
+                <Text text="Active Status" />
             </Column>
         </columns>
         <items>
-            <ColumnListItem>
+            <ColumnListItem type="Navigation">
                 <cells>
                     <Text text="{Name}" />
                     <Text text="{Description}" />

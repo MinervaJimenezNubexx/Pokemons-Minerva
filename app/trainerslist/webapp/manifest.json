@@ -92,13 +92,13 @@
         "type": "View",
         "viewType": "XML",
         "path": "com.nbx.trainerslist.view",
-        "async": true,
-        "viewPath": "com.nbx.trainerslist.view"
+        "async": true
       },
       "routes": [
         {
           "name": "RouteTrainers",
           "pattern": "",
+          "layout": "OneColumn",
           "target": [
             "TargetTrainers"
           ]
@@ -106,6 +106,7 @@
         {
           "name": "RouteTeams",
           "pattern": "trainer/{trainerId}",
+          "layout": "TwoColumnsMidExpanded",
           "target": [
             "TargetTrainers",
             "TargetTeams"
@@ -114,6 +115,7 @@
         {
           "name": "RouteCaptures",
           "pattern": "trainer/{trainerId}/team/{teamId}",
+          "layout": "ThreeColumnsMidExpanded",
           "target": [
             "TargetTrainers",
             "TargetTeams",
@@ -123,18 +125,24 @@
       ],
       "targets": {
         "TargetTrainers": {
-          "viewName": "Main",
-          "viewId": "MainID",
+          "type": "View",
+          "name": "Main",
+          "Id": "MainID",
+          "level": 1,
           "controlAggregation": "beginColumnPages"
         },
         "TargetTeams": {
-          "viewName": "Detail",
-          "viewId": "DetailID",
+          "type": "View",
+          "name": "Detail",
+          "Id": "DetailID",
+          "level": 2,
           "controlAggregation": "midColumnPages"
         },
         "TargetCaptures": {
-          "viewName": "Captures",
-          "viewId": "CapturesID",
+          "type": "View",
+          "name": "Captures",
+          "Id": "CapturesID",
+          "level": 3,
           "controlAggregation": "endColumnPages"
         }
       }

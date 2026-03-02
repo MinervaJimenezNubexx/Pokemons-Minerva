@@ -12,23 +12,23 @@ sap.ui.define([
         },
 
         onRouteMatched: function (oEvent) {
-            let oParams = oEvent.getParameter("arguments"),
-                oDataModel = this.getModel(),
-                sPath = oDataModel.createKey("Trainers", { "trainerId": oParams.ID });
+            debugger;
+            this._sTrainerId = oEvent.getParameter("arguments").trainerId;
 
             this.getView().bindElement({
-                path: "/" + sPath,
+                path: "/Trainers('" + this._sTrainerId + "')",
                 parameters: {
-                    expand: "Teams"
+                    $expand: "Teams"
                 }
             });
         },
 
-        onPressTeam: function (oEvent) {
-            let oItem = oEvent.getSource().getSelectedItem().getBindingContext().getObject(),
-                oRouter = this.getRouter(),
-                sTrainerID = oItem.TeamTrainer_ID,
-                sTeamID = oItem.ID;
+        onPressItem: function (oEvent) {
+            let oItem = oEvent.getParameter("listItem"),
+                oContext = oItem.getBindingContext(),
+                sTeamID = oContext.getProperty("ID"),
+                sTrainerID = this._sTrainerId,
+                oRouter = this.getRouter();
 
             oRouter.navTo("RouteCaptures", {
                 trainerId: sTrainerID,
