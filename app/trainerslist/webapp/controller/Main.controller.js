@@ -25,24 +25,24 @@ sap.ui.define([
                 BirthDate: null
             });
 
-            if (!this._addDocWizard) {
+            if (!this._addTrainerDialog) {
                 sap.ui.core.Fragment.load({
                     id: this.getView().getId(),
                     name: "com.nbx.trainerslist.view.fragment.addTrainerDialog",
                     controller: this
-                }).then(function (oWizard) {
-                    this._addDocWizard = oWizard;
-                    this.getView().addDependent(this._addDocWizard);
-                    this._addDocWizard.open();
+                }).then(function (oDialog) {
+                    this._addTrainerDialog = oDialog;
+                    this.getView().addDependent(this._addTrainerDialog);
+                    this._addTrainerDialog.open();
                 }.bind(this));
             } else {
-                this._addDocWizard.open();
+                this._addTrainerDialog.open();
             }
         },
 
         onCloseWizard: function () {
-            if (this._addDocWizard) {
-                this._addDocWizard.close();
+            if (this._addTrainerDialog) {
+                this._addTrainerDialog.close();
             }
         },
 

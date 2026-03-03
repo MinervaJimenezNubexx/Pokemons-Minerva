@@ -20,6 +20,10 @@ sap.ui.define([
                     $expand: "Captures"
                 }
             });
+        },
+
+        onGetRandomPokemon: function (oEvent){
+            
         }
     });
 });

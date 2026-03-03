@@ -15,9 +15,9 @@ service CapService {
             firstName || ' ' || lastName as Name : String
         };
 
-    entity Pokemon as select from db.Pokemon;
+    entity Pokemon              as select from db.Pokemon;
 
-    function importPokemon() returns String;
+    function importPokemon()                returns String;
 
     /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
@@ -25,14 +25,14 @@ service CapService {
     ]*/
     entity Teams                as projection on db.Teams
         actions {
-            @restrict: [
+            /*@restrict: [
                 {grant: ['*'], to: 'Admin'}
-            ]
+            ]*/
             action   setTeamStatus(status: Boolean) returns String;
 
-            @restrict: [
+            /*@restrict: [
                 {grant: ['*'], to: 'Admin'}
-            ]
+            ]*/
             function getRandomCapture()             returns Captures;
 
         /*{ // this does the same as the line above, putting it after the return
@@ -48,7 +48,10 @@ service CapService {
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
     ]*/
-    entity Captures             as select from db.Captures;
+    entity Captures             as select from db.Captures
+        actions {
+            function getRandomPokemon() returns Pokemon;
+        };
 
     /*@restrict: [
         {grant: 'READ', to: 'Viewer'},

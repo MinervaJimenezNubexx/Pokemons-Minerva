@@ -184,4 +184,10 @@ GET {{server}}/odata/v4/cap/importPokemon()
 # @name GET Pokemon
 GET {{server}}/odata/v4/cap/Pokemon
 
+###
+# @name FUNCTION getRandomPokemon
+GET {{server}}/odata/v4/cap/Pokemon/getRandomPokemon
+
+
+
 

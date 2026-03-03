@@ -75,8 +75,7 @@ entity Teams : cuid {
                       on Captures.Team = $self; // si pongo ID me da error en el cds watch
 }
 
-entity Pokemon {
-    key ID     : UUID  @mandatory  @required;
+entity Pokemon : cuid {
         name   : Name not null;
         number : Int16;
         weight : Int16 not null;

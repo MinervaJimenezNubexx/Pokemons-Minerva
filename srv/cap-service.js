@@ -36,6 +36,9 @@ module.exports = cds.service.impl(async function (srv) {
     //Teams
     srv.on("getRandomCapture", handlers.functions.teams.getRandomCapture);
 
+    //Pokemon
+    srv.on("getRandomPokemon", handlers.functions.pokemon.getRandomPokemon);
+
     /*
         EXTERNALS
     */

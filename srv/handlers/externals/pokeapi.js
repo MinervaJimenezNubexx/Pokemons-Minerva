@@ -24,8 +24,6 @@ async function importPokemon(req) {
         var details;
      const pokemonData = [];
 
-    //  console.log(res);
-
         for (const poke of response.results) {
             // const { data } = await axios.get(poke.url);
             details = await pokeApi.send('GET', `/pokemon/${poke.name}`);
