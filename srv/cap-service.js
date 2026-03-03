@@ -42,6 +42,7 @@ module.exports = cds.service.impl(async function (srv) {
 
     //PokeAPI
     srv.on("getPokemonByName", handlers.externals.pokeapi.getPokemonByName);
+    srv.on("importPokemon", handlers.externals.pokeapi.importPokemon);
 
 })
 

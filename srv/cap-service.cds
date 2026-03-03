@@ -15,6 +15,10 @@ service CapService {
             firstName || ' ' || lastName as Name : String
         };
 
+    entity Pokemon as select from db.Pokemon;
+
+    function importPokemon() returns String;
+
     /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}

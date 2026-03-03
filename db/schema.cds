@@ -13,21 +13,21 @@ type GeoLocation : {
 @assert.unique: {Email: [Email]}
 
 entity Trainers : cuid {
-    firstName   : Name not null;
-    lastName    : Name not null;
+    firstName        : Name not null;
+    lastName         : Name not null;
     //name : String = (firstName || ' ' || lastName);
     // si no le pongo nada no se guarda el dato en bbdd, si pongo stored al final se guardaría: name : String = (firstName || ' ' || lastName) stored;
-    @mandatory Email       : String(121) not null;
-    BirthDate   : Date not null; // formato año-mes-día
+    @mandatory Email : String(121) not null;
+    BirthDate        : Date not null; // formato año-mes-día
 
     // ENUNCIADO: Los Teams dependen del Trainer, de modo que si un entrenador se elimina, todos sus equipos también deben eliminarse ->
     // Como el Team depende del Trainer, para que el Team se borre si se borra el trainer se debe usar una relación fuerte
     // que en este caso es Composition, si fuera Association no se borrarían los teams sin trainers
-    Teams       : Composition of many Teams
-                      on Teams.TeamTrainer = $self; // el formato de las UUID es largo con muchos digitos, mejor buscar un generador de UUID para no hacerlo a mano
+    Teams            : Composition of many Teams
+                           on Teams.TeamTrainer = $self; // el formato de las UUID es largo con muchos digitos, mejor buscar un generador de UUID para no hacerlo a mano
 
-    MedalsOwned : Composition of many trainerMedals
-                      on MedalsOwned.trainerOwns = $self;
+    MedalsOwned      : Composition of many trainerMedals
+                           on MedalsOwned.trainerOwns = $self;
 }
 
 entity Medals : cuid {
@@ -75,6 +75,14 @@ entity Teams : cuid {
                       on Captures.Team = $self; // si pongo ID me da error en el cds watch
 }
 
+entity Pokemon {
+    key ID     : UUID  @mandatory  @required;
+        name   : Name not null;
+        number : Int16;
+        weight : Int16 not null;
+        height : Int16 not null;
+}
+
 entity Captures : cuid {
     PokemonName : Name not null;
     Weight      : Int16 not null;
@@ -86,6 +94,3 @@ entity Captures : cuid {
 // Since Captures depends on Teams, and Teams on Trainers, it creates Delete on Cascade
 
 // The views can be done here in the schema.cds or in the service.cds
-
-
-

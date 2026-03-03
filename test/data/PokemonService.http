@@ -176,4 +176,12 @@ GET {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)/getRando
 # @name EXTERNAL getPokemonByName NO DESTINATIONS
 GET {{server}}/odata/v4/cap/getPokemonByName(name='sylveon')
 
+### 
+# @name EXTERNAL importPokemon
+GET {{server}}/odata/v4/cap/importPokemon()
+
+###
+# @name GET Pokemon
+GET {{server}}/odata/v4/cap/Pokemon
+
 
