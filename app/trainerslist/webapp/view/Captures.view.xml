@@ -28,14 +28,6 @@
             </ColumnListItem>
         </items>
     </Table>
-    <footer>
-        <Toolbar>
-            <ToolbarSpacer /> <Button 
-                text="Get Random Pokemon" 
-                type="Default" 
-                press=".onGetRandomPokemon" />
-        </Toolbar>
-    </footer>
 
     </Page>
 </mvc:View>

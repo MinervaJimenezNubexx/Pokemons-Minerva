@@ -28,10 +28,16 @@
         </content>
 
         <beginButton>
-            <Button text="Capture" type="Accept" press=".onCapturePokemon"/>
+            <Button text="Capture"
+            icon="sap-icon://accept"
+            type="Accept"
+            press=".onCapturePokemon"/>
         </beginButton>
         <endButton>
-            <Button text="Run Away" type="Reject" press=".onCancelCapture"/>
+            <Button text="Run Away"
+            icon="sap-icon://decline"
+            type="Reject"
+            press=".onCancelCapture"/>
         </endButton>
         
     </Dialog>

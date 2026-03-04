@@ -29,6 +29,7 @@
                 <Button 
                     text="Catch Random Pokemon" 
                     type="Emphasized" 
+                    icon="sap-icon://search"
                     press=".onSearchRandomPokemon" />
             </Toolbar>
         </footer>

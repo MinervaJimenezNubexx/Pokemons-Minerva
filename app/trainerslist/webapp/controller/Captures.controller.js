@@ -22,8 +22,5 @@ sap.ui.define([
             });
         },
 
-        onGetRandomPokemon: function (oEvent){
-            
-        }
     });
 });
