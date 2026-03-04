@@ -19,6 +19,8 @@ service CapService {
 
     function importPokemon()                returns String;
 
+    function getRandomPokemon() returns Pokemon;
+
     /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
@@ -42,16 +44,15 @@ service CapService {
             Height      : Integer;
             Team_ID     : UUID;
         };*/
+
+            action addCapture(pokemonId: UUID) returns Captures;
         };
 
     /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
         {grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Admin'}
     ]*/
-    entity Captures             as select from db.Captures
-        actions {
-            function getRandomPokemon() returns Pokemon;
-        };
+    entity Captures             as select from db.Captures;
 
     /*@restrict: [
         {grant: 'READ', to: 'Viewer'},

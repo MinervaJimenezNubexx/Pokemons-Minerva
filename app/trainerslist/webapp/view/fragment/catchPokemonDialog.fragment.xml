@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    
+    <Dialog 
+        id="catchDialog" 
+        title="A wild Pokemon appeared!">
+        
+        <content>
+            <form:SimpleForm layout="ColumnLayout" editable="true">
+                <form:content>
+                    <Label text="Name"/>
+                    <Text text="{randomPokemon>/name}" />
+                    
+                    <Label text="Weight"/>
+                    <Text text="{randomPokemon>/weight} hg" />
+                    
+                    <Label text="Height"/>
+                    <Text text="{randomPokemon>/height} dm" />
+
+                    <Label text="Select Team" required="true"/>
+                    <Select id="teamSelector" items="{Teams}">
+                        <core:Item key="{ID}" text="{Name}" />
+                    </Select>
+                </form:content>
+            </form:SimpleForm>
+        </content>
+
+        <beginButton>
+            <Button text="Capture" type="Accept" press=".onCapturePokemon"/>
+        </beginButton>
+        <endButton>
+            <Button text="Run Away" type="Reject" press=".onCancelCapture"/>
+        </endButton>
+        
+    </Dialog>
+</core:FragmentDefinition>

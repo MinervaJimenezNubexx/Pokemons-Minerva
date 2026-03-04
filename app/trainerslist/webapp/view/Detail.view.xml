@@ -24,5 +24,14 @@
             </items>
         </IconTabBar>
 
+        <footer>
+            <Toolbar>
+                <Button 
+                    text="Catch Random Pokemon" 
+                    type="Emphasized" 
+                    press=".onSearchRandomPokemon" />
+            </Toolbar>
+        </footer>
+
     </Page>
 </mvc:View>

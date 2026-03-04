@@ -11,6 +11,33 @@ async function setTeamStatus(req) {
     return `Team status updated to ${status}`
 }
 
+async function addCapture(req) {
+    const teamId = req.params[0].ID;
+    const {pokemonId} = req.data;
+    const pokemon = await cds.db.run(
+        SELECT.one.from('pokemons.db.Pokemon').where({ID: pokemonId})
+    );
+
+    if (!pokemon) {
+        return req.error(404, "The selected pokemon doesn't exist on the data base.");
+    }
+
+    const newCapture = {
+        ID: cds.utils.uuid(),
+        PokemonName: pokemon.name,
+        Weight: pokemon.weight,
+        Height: pokemon.height,
+        Team_ID: teamId
+    };
+
+    await cds.db.run(
+        INSERT.into('pokemons.db.Captures').entries(newCapture)
+    );
+
+    return newCapture;
+}
+
 module.exports = {
-    setTeamStatus
+    setTeamStatus,
+    addCapture
 };

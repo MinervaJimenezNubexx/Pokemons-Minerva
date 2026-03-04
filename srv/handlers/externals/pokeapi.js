@@ -36,7 +36,6 @@ async function importPokemon(req) {
             });
         }
 
-        // Limpiar e insertar
         await cds.db.run(DELETE.from('pokemons.db.Pokemon'));
         await cds.db.run(INSERT.into('pokemons.db.Pokemon').entries(pokemonData));
 

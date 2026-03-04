@@ -186,7 +186,16 @@ GET {{server}}/odata/v4/cap/Pokemon
 
 ###
 # @name FUNCTION getRandomPokemon
-GET {{server}}/odata/v4/cap/Pokemon/getRandomPokemon
+GET {{server}}/odata/v4/cap/getRandomPokemon
+
+###
+# @name ACTION addCapture
+POST {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)/addCapture
+Content-Type: application/json
+
+{
+    "pokemonId": "7671eaa2-0a0a-487f-83f7-5fc920ff5bb3"
+}
 
 
 

@@ -28,6 +28,7 @@ module.exports = cds.service.impl(async function (srv) {
 
     //Teams
     srv.on("setTeamStatus", handlers.actions.teams.setTeamStatus);
+    srv.on("addCapture", handlers.actions.teams.addCapture);
 
     /*
         FUNCTIONS
