@@ -194,7 +194,7 @@ POST {{server}}/odata/v4/cap/Teams(00000000-0000-0000-0000-000000000005)/addCapt
 Content-Type: application/json
 
 {
-    "pokemonId": "7671eaa2-0a0a-487f-83f7-5fc920ff5bb3"
+    "pokemonId": "017d8697-d2c5-4641-9340-a9d69ba42d68"
 }
 
 

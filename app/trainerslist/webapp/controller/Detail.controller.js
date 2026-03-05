@@ -106,6 +106,7 @@ sap.ui.define([
                 }
 
             }).catch((oError) => {
+                sap.ui.core.BusyIndicator.hide();
                 MessageBox.error("Error capturing the pokemon: " + oError.message);
             });
         }
