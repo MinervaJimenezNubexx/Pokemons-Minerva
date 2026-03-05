@@ -5,16 +5,16 @@
         <Table items="{Captures}">
         <columns>
             <Column>
-                <Text text="ID" />
+                <Text text="{i18n>captureIdColumn}" />
             </Column>
             <Column>
-                <Text text="Pokemon Name" />
+                <Text text="{i18n>captureNameColumn}" />
             </Column>
             <Column>
-                <Text text="Weight" />
+                <Text text="{i18n>captureWeightColumn}" />
             </Column>
             <Column>
-                <Text text="Height" />
+                <Text text="{i18n>captureHeightColumn}" />
             </Column>
         </columns>
         <items>

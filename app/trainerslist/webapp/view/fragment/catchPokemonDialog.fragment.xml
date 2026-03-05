@@ -5,21 +5,21 @@
     
     <Dialog 
         id="catchDialog" 
-        title="A wild Pokemon appeared!">
+        title="{i18n>captureRandomPokemontitle}">
         
         <content>
             <form:SimpleForm layout="ColumnLayout" editable="true">
                 <form:content>
-                    <Label text="Name"/>
+                    <Label text="{i18n>randomPokemonName}"/>
                     <Text text="{randomPokemon>/name}" />
                     
-                    <Label text="Weight"/>
-                    <Text text="{randomPokemon>/weight} hg" />
+                    <Label text="{i18n>randomPokemonWeight}"/>
+                    <Text text="{randomPokemon>/weight} {i18n>randomPokemonWeigthMeasurement}" />
                     
-                    <Label text="Height"/>
-                    <Text text="{randomPokemon>/height} dm" />
+                    <Label text="{i18n>randomPokemonHeigth}"/>
+                    <Text text="{randomPokemon>/height} {i18n>randomPokemonHeigthmeasurement}" />
 
-                    <Label text="Select Team" required="true"/>
+                    <Label text="{i18n>randomPokemonSelectTeamLabel}" required="true"/>
                     <Select id="teamSelector" items="{Teams}">
                         <core:Item key="{ID}" text="{Name}" />
                     </Select>
@@ -28,13 +28,13 @@
         </content>
 
         <beginButton>
-            <Button text="Capture"
+            <Button text="{i18n>captureButton}"
             icon="sap-icon://accept"
             type="Accept"
             press=".onCapturePokemon"/>
         </beginButton>
         <endButton>
-            <Button text="Run Away"
+            <Button text="{i18n>cancelButton}"
             icon="sap-icon://decline"
             type="Reject"
             press=".onCancelCapture"/>

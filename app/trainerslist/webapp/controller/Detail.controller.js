@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
-    "sap/ui/core/Fragment"
-], (BaseController, JSONModel, MessageToast, MessageBox, Fragment) => {
+    "sap/ui/core/Fragment",
+    "../util/constants"
+], (BaseController, JSONModel, MessageToast, MessageBox, Fragment, Constants) => {
     "use strict";
 
     return BaseController.extend("com.nbx.trainerslist.controller.Detail", {
@@ -12,9 +13,21 @@ sap.ui.define([
             var oRouter = this.getRouter();
             oRouter.getRoute("RouteTeams").attachMatched(this.onRouteMatched, this);
 
+            this._o18n = this.getResourceBundle();
+
+            //Local model for capturing random pokemons
             let oRandomPokemonModel = new JSONModel({});
             this.getView().setModel(oRandomPokemonModel, "randomPokemon");
             //debugger;
+
+            //local model for creating new team
+            let oTeamModel = new JSONModel({
+                Name: "",
+                Description: "",
+                Active: false //inactive by default
+            });
+
+            this.getView().setModel(oTeamModel, "newTeam");
         },
 
         onRouteMatched: function (oEvent) {
@@ -29,6 +42,8 @@ sap.ui.define([
             });
         },
 
+        //NAVIGATION TO CAPTURES
+
         onPressItem: function (oEvent) {
             let oItem = oEvent.getParameter("listItem"),
                 oContext = oItem.getBindingContext(),
@@ -41,6 +56,8 @@ sap.ui.define([
                 teamId: sTeamID
             });
         },
+
+        // CAPTURE RANDOM POKEMONS
 
         onSearchRandomPokemon: function () {
             let oModel = this.getView().getModel(),
@@ -69,7 +86,7 @@ sap.ui.define([
 
             }).catch((oError) => {
                 sap.ui.core.BusyIndicator.hide();
-                MessageBox.error("Failed to find a pokemon: " + oError.message);
+                MessageBox.error(this._o18n.getText('findRandomPokemonError') + ' ' + oError.message);
             });
         },
 
@@ -84,7 +101,7 @@ sap.ui.define([
                 sSelectedTeamId = oSelect.getSelectedKey();
 
             if (!sSelectedTeamId) {
-                MessageBox.warning("A team needs to be selected.");
+                MessageBox.warning(this._o18n.getText('noTeamSelectedWarning'));
                 return;
             }
 
@@ -100,14 +117,78 @@ sap.ui.define([
 
             oAction.execute().then(() => {
                 sap.ui.core.BusyIndicator.hide();
-                MessageToast.show("Pokemon captured successfully.");
+                MessageToast.show(this._o18n.getText('MessagePokmnCaptured'));
                 if (this._catchDialog) {
                     this._catchDialog.close();
                 }
 
+                oModel.refresh();
+                //constants.var1;
             }).catch((oError) => {
                 sap.ui.core.BusyIndicator.hide();
-                MessageBox.error("Error capturing the pokemon: " + oError.message);
+                MessageBox.error(this._o18n.getText('MessageErrorPokmnCaptured') + oError.message);
+            });
+        },
+
+        //CREATE NEW TEAM
+
+        onOpenAddTeamDialog: function () {
+            this.getView().getModel("newTeam").setData({
+                Name: "",
+                Description: "",
+                Active: false
+            });
+
+            if (!this._addTeamDialog) {
+                sap.ui.core.Fragment.load({
+                    id: this.getView().getId(),
+                    name: "com.nbx.trainerslist.view.fragment.addTeamDialogUser",
+                    controller: this
+                }).then(function (oDialog) {
+                    this._addTeamDialog = oDialog;
+                    this.getView().addDependent(this._addTeamDialog);
+                    this._addTeamDialog.open();
+                }.bind(this));
+            } else {
+                this._addTeamDialog.open();
+            }
+
+
+        },
+
+        onCloseTeamDialog: function () {
+            if (this._addTeamDialog) {
+                this._addTeamDialog.close();
+            }
+        },
+
+        onSaveTeam: function () {
+            let oModel = this.getView().getModel(),
+                oData = this.getView().getModel("newTeam").getData();
+
+            if (!oData.Name || !oData.Description) {
+                MessageBox.warning(this._o18n.getText('FillAllRequiredUserTeam'));
+                return;
+            }
+
+            let sTrainerId = this._sTrainerId,
+                sPath = "/Trainers('" + sTrainerId + "')/Teams",
+                oListBinding = oModel.bindList(sPath);
+
+            let oContext = oListBinding.create({
+                Name: oData.Name,
+                Description: oData.Description,
+                Active: oData.Active
+            });
+
+            oContext.created().then(() => {
+                MessageToast.show(this._o18n.getText('TeamAddedUser'));
+                if (this._addTeamDialog) {
+                    this._addTeamDialog.close();
+                }
+                this.getView().getBindingContext().refresh();
+            }).catch((oError) => {
+                MessageBox.error(this._o18n.getText('TeamAddedErrorUser') + ' ' + oError.message);
             });
         }
     });

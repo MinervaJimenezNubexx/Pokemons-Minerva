@@ -5,7 +5,7 @@
 >
     <Page
         id="MainID"
-        title="{i18n>title}"
+        title="{i18n>MainTitle}"
     >
         <Table
             id="idTrainersTable"
@@ -15,13 +15,13 @@
         >
             <columns>
                 <Column width="5em">
-                    <Text text="Trainer ID" />
+                    <Text text="{i18n>TrainerIdColumn}" />
                 </Column>
                 <Column width="5em">
-                    <Text text="First Name" />
+                    <Text text="{i18n>FirstNameColumn}" />
                 </Column>
                 <Column width="5em">
-                    <Text text="Last Name" />
+                    <Text text="{i18n>LastNameColumn}" />
                 </Column>
 
             </columns>
@@ -37,10 +37,15 @@
         </Table>
         <footer>
             <Toolbar>
-                <ToolbarSpacer /> <Button 
-                    text="Add Trainer" 
+                <ToolbarSpacer /> 
+                <Button 
+                    text="{i18n>AddTrainerMainButton}" 
                     type="Default" 
                     press=".onAddDocument" />
+                <Button 
+                    text="{i18n>AddTeamMainButton}" 
+                    type="Default" 
+                    press=".onOpenAddTeamDialog" />
             </Toolbar>
         </footer>
     </Page>

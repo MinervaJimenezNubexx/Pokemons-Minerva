@@ -4,13 +4,13 @@
            itemPress=".onPressItem">
         <columns>
             <Column>
-                <Text text="Name" />
+                <Text text="{i18n>showTeamName}" />
             </Column>
             <Column>
-                <Text text="Description" />
+                <Text text="{i18n>showTeamDescription}" />
             </Column>
             <Column>
-                <Text text="Active Status" />
+                <Text text="{i18n>showTeamStatus}" />
             </Column>
         </columns>
         <items>

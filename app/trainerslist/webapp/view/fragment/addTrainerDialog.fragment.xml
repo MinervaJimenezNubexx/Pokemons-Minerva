@@ -7,18 +7,18 @@
         title="{i18n>titleWizard}"> 
         <content>
             <Wizard showNextButton="false">
-                <WizardStep title="Trainer Information">
+                <WizardStep title="{i18n>titleStep}">
                     <form:SimpleForm editable="true" layout="ColumnLayout">
-                        <Label text="First Name" required="true"/>
+                        <Label text="{i18n>infoFirstName}" required="true"/>
                         <Input value="{newTrainer>/firstName}" />
                         
-                        <Label text="Last Name" required="true"/>
+                        <Label text="{i18n>infoLastName}" required="true"/>
                         <Input value="{newTrainer>/lastName}" />
                         
-                        <Label text="Email" required="true"/>
+                        <Label text="{i18n>infoEmail}" required="true"/>
                         <Input value="{newTrainer>/Email}" type="Email" />
                         
-                        <Label text="Birth Date" required="true"/>
+                        <Label text="{i18n>infoBirthDate}" required="true"/>
                         <DatePicker value="{newTrainer>/BirthDate}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" />
                     </form:SimpleForm>
                 </WizardStep>
@@ -27,10 +27,10 @@
         </content>
 
         <beginButton>
-            <Button text="Save" type="Accept" press=".onSaveTrainer"/>
+            <Button text="{i18n>addTrainerSaveButton}" type="Accept" press=".onSaveTrainer"/>
         </beginButton>
         <endButton>
-            <Button text="Cancel" press=".onCloseWizard"/>
+            <Button text="{i18n>addTrainerCancelButton}" press=".onCloseWizard"/>
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    
+    <Dialog 
+        id="addTeamDialog" 
+        title="{i18n>titleTeamDialog}">
+        
+        <content>
+            <form:SimpleForm editable="true" layout="ColumnLayout">
+                <form:content>
+                    <Label text="{i18n>infoTeamName}" required="true"/>
+                    <Input value="{newTeam>/Name}" />
+                    
+                    <Label text="{i18n>infoTeamDescription}" required="true"/>
+                    <Input value="{newTeam>/Description}" />
+                    
+                    <Label text="{i18n>infoTeamStatus}" />
+                    <Switch state="{newTeam>/Active}" customTextOn="{i18n>infoCustomTextOn}" customTextOff="{i18n>infoCustomTextOff}" />
+
+                    <Label text="{i18n>infoTrainerAssigned}" required="true"/>
+                    <Select id="trainerSelectorAdmin" items="{/Trainers}">
+                        <core:Item key="{ID}" text="{firstName} {lastName}" />
+                    </Select>
+                </form:content>
+            </form:SimpleForm>
+        </content>
+
+        <beginButton>
+            <Button text="{i18n>addTeamSaveButton}" type="Emphasized" press=".onSaveTeam"/>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>addTeamCancelButton}" press=".onCloseTeamDialog"/>
+        </endButton>
+        
+    </Dialog>
+</core:FragmentDefinition>
