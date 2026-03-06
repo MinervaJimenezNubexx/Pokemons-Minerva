@@ -1,7 +1,13 @@
 using {pokemons.db as db} from '../db/schema'; //cds watch
 
-//@requires: 'authenticated-user'
+@requires: 'authenticated-user'
 service CapService {
+
+
+    @readonly
+    entity Roles                as projection on db.Roles;
+    
+    function getUserPermissions()           returns Roles;
 
     /*@cds.redirection.target
 
@@ -19,7 +25,7 @@ service CapService {
 
     function importPokemon()                returns String;
 
-    function getRandomPokemon() returns Pokemon;
+    function getRandomPokemon()             returns Pokemon;
 
     /*@restrict: [
         {grant: 'READ', to: 'Viewer'},
@@ -37,15 +43,15 @@ service CapService {
             ]*/
             function getRandomCapture()             returns Captures;
 
-        /*{ // this does the same as the line above, putting it after the return
-            ID          : UUID;
-            PokemonName : String;
-            Weight      : Integer;
-            Height      : Integer;
-            Team_ID     : UUID;
-        };*/
+            /*{ // this does the same as the line above, putting it after the return
+                ID          : UUID;
+                PokemonName : String;
+                Weight      : Integer;
+                Height      : Integer;
+                Team_ID     : UUID;
+            };*/
 
-            action addCapture(pokemonId: UUID) returns Captures;
+            action   addCapture(pokemonId: UUID)    returns Captures;
         };
 
     /*@restrict: [

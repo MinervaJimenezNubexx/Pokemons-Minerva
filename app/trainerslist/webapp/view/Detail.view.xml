@@ -29,11 +29,13 @@
                     text="{i18n>catchRandomPokemonButton}" 
                     type="Emphasized" 
                     icon="sap-icon://search"
-                    press=".onSearchRandomPokemon" />
+                    press=".onSearchRandomPokemon"
+                    visible="{permissions>/capture}"/>
                 <Button 
                     text="{i18n>addTeamUserButton}" 
                     type="Default" 
-                    press=".onOpenAddTeamDialog" />
+                    press=".onOpenAddTeamDialog"
+                    visible="{permissions>/edit}"/>
             </Toolbar>
         </footer>
 

@@ -74,6 +74,9 @@
       },
       "appView": {
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "permissions": {
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {

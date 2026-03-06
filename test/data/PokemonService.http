@@ -197,6 +197,17 @@ Content-Type: application/json
     "pokemonId": "017d8697-d2c5-4641-9340-a9d69ba42d68"
 }
 
+### Manager
+GET {{server}}/odata/v4/cap/getUserPermissions()
+Authorization: Basic manager 123
+
+### Trainer
+GET {{server}}/odata/v4/cap/getUserPermissions()
+Authorization: Basic trainer_ash 123
+
+### Viewer
+GET {{server}}/odata/v4/cap/getUserPermissions()
+Authorization: Basic viewer 123
 
 
 

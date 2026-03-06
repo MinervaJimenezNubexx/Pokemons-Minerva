@@ -40,6 +40,9 @@ module.exports = cds.service.impl(async function (srv) {
     //Pokemon
     srv.on("getRandomPokemon", handlers.functions.pokemon.getRandomPokemon);
 
+    //Roles
+    srv.on("getUserPermissions", handlers.functions.roles.getUserPermissions);
+
     /*
         EXTERNALS
     */

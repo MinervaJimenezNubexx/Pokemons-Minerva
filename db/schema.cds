@@ -93,3 +93,11 @@ entity Captures : cuid {
 // Since Captures depends on Teams, and Teams on Trainers, it creates Delete on Cascade
 
 // The views can be done here in the schema.cds or in the service.cds
+
+entity Roles : cuid {
+    rol : Name not null;
+    edit : Boolean default false;
+    view : Boolean default true;
+    admin : Boolean default false;
+    capture : Boolean default false;
+}

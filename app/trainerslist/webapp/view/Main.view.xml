@@ -41,11 +41,13 @@
                 <Button 
                     text="{i18n>AddTrainerMainButton}" 
                     type="Default" 
-                    press=".onAddDocument" />
+                    press=".onAddDocument" 
+                    visible="{permissions>/admin}"/>
                 <Button 
                     text="{i18n>AddTeamMainButton}" 
                     type="Default" 
-                    press=".onOpenAddTeamDialog" />
+                    press=".onOpenAddTeamDialog"
+                    visible="{permissions>/admin}"/>
             </Toolbar>
         </footer>
     </Page>

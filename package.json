@@ -24,8 +24,24 @@
   "private": true,
   "cds": {
     "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "manager": {
+            "password": "123",
+            "roles": ["Manager"]
+          },
+          "trainer_ash": {
+            "password": "123",
+            "roles": ["Trainer"]
+          },
+          "viewer": {
+            "password": "123",
+            "roles": ["Viewer"]
+          }
+        }
+      },
       "[production]": {
-        "auth": "xsuaa",
         "db": "hana"
       },
       "destinations": true,

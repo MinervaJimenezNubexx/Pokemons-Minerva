@@ -1,0 +1,4 @@
+ID, rol, edit, view, admin, capture
+00000000-0000-0000-0000-000000000001, Manager, true, true, true, false
+00000000-0000-0000-0000-000000000002, Trainer, true, true, false, true
+00000000-0000-0000-0000-000000000003, Viewer, false, true, false, false
