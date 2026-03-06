@@ -1,6 +1,7 @@
 sap.ui.define([
-    "./BaseController"
-], (BaseController) => {
+    "./BaseController",
+    "sap/ui/core/routing/History"
+], (BaseController, History) => {
     "use strict";
 
     return BaseController.extend("com.nbx.trainerslist.controller.Captures", {
@@ -14,6 +15,17 @@ sap.ui.define([
                 sTrainerId = oArgs.trainerId,
                 sTeamId = oArgs.teamId;
 
+            let oPermissionsModel = this.getView().getModel("permissions");
+            if (oPermissionsModel) {
+                let sRol = oPermissionsModel.getProperty("/rol");
+
+                if (sRol === "Trainer") {
+                    this.getView().getModel("appView").setProperty("/layout", "EndColumnFullScreen");
+                } else {
+                    this.getView().getModel("appView").setProperty("/layout", "ThreeColumnsEndExpanded");
+                }
+            }
+
             this.getView().bindElement({
                 path: "/Trainers('" + sTrainerId + "')/Teams('" + sTeamId + "')",
                 parameters: {
@@ -21,6 +33,19 @@ sap.ui.define([
                 }
             });
         },
+
+        onCloseCaptures: function () {
+            let oHistory = History.getInstance(),
+                sPreviousHash = oHistory.getPreviousHash();
+
+            if (sPreviousHash !== undefined) {
+                window.history.go(-1);
+            } else {
+                this.getOwnerComponent().getRouter().navTo("RouteTeams", {
+                    trainerId: this.sTrainerId
+                }, true);
+            }
+        }
 
     });
 });

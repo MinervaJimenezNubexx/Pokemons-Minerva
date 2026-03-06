@@ -4,8 +4,9 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     "sap/ui/core/Fragment",
+    "sap/ui/core/routing/History",
     "../util/constants"
-], (BaseController, JSONModel, MessageToast, MessageBox, Fragment, Constants) => {
+], (BaseController, JSONModel, MessageToast, MessageBox, Fragment, Constants, History) => {
     "use strict";
 
     return BaseController.extend("com.nbx.trainerslist.controller.Detail", {
@@ -34,12 +35,34 @@ sap.ui.define([
             debugger;
             this._sTrainerId = oEvent.getParameter("arguments").trainerId;
 
+            let oPermissionsModel = this.getView().getModel("permissions");
+            if (oPermissionsModel) {
+                let sRol = oPermissionsModel.getProperty("/rol");
+
+                if (sRol === "Trainer") {
+                    this.getView().getModel("appView").setProperty("/layout", "MidColumnFullScreen");
+                } else {
+                    this.getView().getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
+                }
+            }
+
             this.getView().bindElement({
                 path: "/Trainers('" + this._sTrainerId + "')",
                 parameters: {
                     $expand: "Teams"
                 }
             });
+        },
+
+        onCloseDetail: function () {
+            let oHistory = History.getInstance(),
+                sPreviousHash = oHistory.getPreviousHash();
+
+            if (sPreviousHash !== undefined) {
+                window.history.go(-1);
+            } else {
+                this.getRouter().navTo("RouteTrainers");
+            }
         },
 
         //NAVIGATION TO CAPTURES

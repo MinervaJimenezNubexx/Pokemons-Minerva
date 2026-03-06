@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.nbx.trainerslist.controller.Captures"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="CapturesID" title="{i18n>titleCaptures}">
+    <Page id="CapturesID" title="{i18n>titleCaptures}" showNavButton="true" navButtonPress=".onCloseCaptures">
         <Table items="{Captures}">
         <columns>
             <Column>

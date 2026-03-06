@@ -6,6 +6,7 @@
     <Page
         id="MainID"
         title="{i18n>MainTitle}"
+        visible="{= ${permissions>/rol} !== 'Trainer' }"
     >
         <Table
             id="idTrainersTable"

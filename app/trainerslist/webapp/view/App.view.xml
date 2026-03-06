@@ -9,6 +9,6 @@
 
         <f:FlexibleColumnLayout
             id="layout"
-            layout="OneColumn" />
+            layout="{appView>/layout}" />
     </App>
 </mvc:View>
