@@ -6,8 +6,17 @@ service CapService {
 
     @readonly
     entity Roles                as projection on db.Roles;
-    
-    function getUserPermissions()           returns Roles;
+
+    type UserPermissions {
+        rol     : String;
+        edit    : Boolean;
+        view    : Boolean;
+        admin   : Boolean;
+        capture : Boolean;
+        email   : String;
+    }
+
+    function getUserPermissions()           returns UserPermissions;
 
     /*@cds.redirection.target
 

@@ -10,6 +10,8 @@ module.exports = cds.service.impl(async function (srv) {
     //Trainers
     srv.before(['CREATE', 'UPDATE'], "Trainers", handlers.entities.trainers.validateTrainer);
 
+    srv.before(['READ'], "Trainers", handlers.functions.trainers.restrictTrainerRead);
+
     srv.after(['READ'], "Trainers", handlers.entities.trainers.uppercaseTrainerFirstName);
 
     //Teams

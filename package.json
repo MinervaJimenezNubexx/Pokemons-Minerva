@@ -27,15 +27,15 @@
       "auth": {
         "kind": "mocked",
         "users": {
-          "manager": {
+          "manager@nubexx.es": {
             "password": "123",
             "roles": ["Manager"]
           },
-          "trainer_ash": {
+          "ashketchum@nubexx.es": {
             "password": "123",
             "roles": ["Trainer"]
           },
-          "viewer": {
+          "viewer@nubexx.es": {
             "password": "123",
             "roles": ["Viewer"]
           }

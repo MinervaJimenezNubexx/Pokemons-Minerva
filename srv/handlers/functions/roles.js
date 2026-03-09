@@ -13,17 +13,20 @@ async function getUserPermissions (req){
         SELECT.one.from('pokemons.db.Roles').where({ rol: userRole })
     );
 
+    const userEmail = req.user.id;
+
     if (!permissions) {
         return {
             rol: userRole,
             edit: false,
             view: true,
             admin: false,
-            capture: false
+            capture: false,
+            email: userEmail
         };
     }
 
-    return permissions;
+    return {permissions, email: userEmail};
 }
 
 module.exports = {

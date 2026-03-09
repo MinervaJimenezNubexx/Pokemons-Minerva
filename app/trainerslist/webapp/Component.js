@@ -29,14 +29,18 @@ sap.ui.define([
                 oPermissionsModel = this.getModel("permissions"),
                 oContextBinding = oModel.bindContext("/getUserPermissions(...)");
 
+
             oContextBinding.execute().then(() => {
-                let oData = oContextBinding.getBoundContext().getObject();
+                let oRawData = oContextBinding.getBoundContext().getObject(),
+                    oData = { //flatten the data because of the email, if not oData.rol doesn't exist like that
+                        ...oRawData.permissions,
+                        email: oRawData.email
+                    };
                 oPermissionsModel.setData(oData);
-                console.log("Permisos cargados correctamente:", oData);
 
                 if (oData.rol === "Trainer") {
                     let oListBinding = oModel.bindList("/Trainers");
-                    oListBinding.filter(new Filter("firstName", "EQ", "Ash"));
+                    oListBinding.filter(new Filter("Email", "EQ", oData.email));
 
                     oListBinding.requestContexts(0, 1).then((aContexts) => {
                         this.getRouter().initialize();
@@ -44,6 +48,8 @@ sap.ui.define([
                             let sTrainerId = aContexts[0].getProperty("ID");
                             this.getRouter().navTo("RouteTeams", { trainerId: sTrainerId });
                             this.getModel("appView").setProperty("/layout", "MidColumnFullScreen");
+                        } else {
+                            console.error("No se ha encontrado ningún entrenador con el email:", oData.email);
                         }
                     });
                 } else {
