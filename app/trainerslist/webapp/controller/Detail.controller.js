@@ -6,7 +6,7 @@ sap.ui.define([
     "sap/ui/core/Fragment",
     "sap/ui/core/routing/History",
     "../util/constants"
-], (BaseController, JSONModel, MessageToast, MessageBox, Fragment, Constants, History) => {
+], (BaseController, JSONModel, MessageToast, MessageBox, Fragment, History, Constants) => {
     "use strict";
 
     return BaseController.extend("com.nbx.trainerslist.controller.Detail", {
